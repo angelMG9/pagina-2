@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aletheia - Sabiduría de la Mitología Griega</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #d4af37;
+            --accent-color: #ffffff;
+            --light-color: #ff000000;
+            --dark-color: #1a1a1a;
+        }
+
+        body {
+            font-family:  'Times New Roman', Times, serif; 
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            height: 80vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 1rem auto 0;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn-custom {
+            background-color: var(--secondary-color);
+            border: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section {
+            background-color: rgba(8, 8, 8, 0.1);
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .greek-symbol {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="inicio de sesion.html">
+                <span class="fw-bold">Aletheia</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <img src="imagenes/Recurso 1.png" width="150px" class="img-fluid mb-4">
+            <p class="lead mb-4">Descubre la verdad detrás de la mitología griega a través de nuestros cursos y
+                productos inspiradores</p>
+            <button class="btn btn-custom me-2"><a href="index.html">Explorar Cursos</a></button>
+            
+    </section>
+
+    <section class="py-5" id="nosotros">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Acerca de Nosotros</h2>
+                    <p class="lead">En la mitología griega, Aletheia (Αλήθεια) representa la verdad y la sinceridad.
+                        Nuestra esencia es revelar la sabiduría atemporal de la antigua Grecia.</p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="mb-4">
+                        <h3 class="mb-3" style="color: var(--secondary-color);">¿Quiénes Somos?</h3>
+                        <p class="mb-4">"Aletheia" es una marca basada en la mitología griega, la cual se enfoca
+                            mayoritariamente en enseñar e inspirar al público por medio de nuestros cursos y productos,
+                            dando énfasis en la cultura de la mitología griega.</p>
+
+                        <p>Por medio de nuestros cursos, brindaremos todas las herramientas e información necesaria para
+                            que las marcas tengan su propia identidad.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-3" style="color: var(--secondary-color);">Nuestro Objetivo</h3>
+                        <p>Inducir a los jóvenes y niños para que comprendan y aprecien la mitología griega, por medio
+                            de cursos en los que se demuestre la influencia y el impacto que tuvo la cultura griega en
+                            la actualidad.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="imagenes/ultima foto para la pagina 2.png" alt="Mitología Griega"
+                        class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 about-section" id="que-ofrecemos">
+        <div class="container">
+            <h2 class="section-title text-center">¿Qué Ofrecemos?</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    <p class="lead">Nuestro compromiso es acercar la riqueza de la mitología griega a nuevas
+                        generaciones a través de experiencias educativas innovadoras y productos inspiradores.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="greek-symbol">Ω</div>
+                            <h3>Cursos para Jóvenes</h3>
+                            <p>Programas interactivos diseñados especialmente para que niños y jóvenes descubran de
+                                forma divertida los mitos, dioses y héroes de la antigua Grecia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="greek-symbol">Φ</div>
+                            <h3>Identidad de Marca</h3>
+                            <p>Asesoramiento para que empresas y emprendedores desarrollen una identidad sólida
+                                inspirada en los valores y la sabiduría de la mitología griega.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="greek-symbol">Δ</div>
+                            <h3>Objectivo Especifico</h3>
+                            <p>Mejorar la calidad para el público: Crear
+                                contenido atractivo y entretenido basado en la
+                                mitología. Utilizar la mitología para inspirar a
+                                las personas a ser creativas, innovadoras y
+                                valientes. Ofrecer una experiencia memorable
+                                a los consumidores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Nuestros Cursos</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/api/placeholder/400/250" class="card-img-top" alt="Curso de Mitología Básica">
+                        <div class="card-body">
+                            <h4>Inducción a la mitología </h4>
+                            <p>Adentrate a un maravilloso mundo de mitologia griega, que va estar llenó de magía y
+                                maravillosa información acerca de la historia griega</p>
+                            <a href="index.html">
+                                <button class="btn btn-custom">Ver Detalles</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/api/placeholder/400/250" class="card-img-top" alt="Curso de Mitología Avanzada">
+                        <div class="card-body">
+                            <h4>Mitología Avanzada</h4>
+                            <p>Explora los mitos y leyendas más complejos de la mitología griega, desde los héroes hasta
+                                los dioses.</p>
+                            <a href="index.html">
+                                <button class="btn btn-custom">Ver Detalles</button>
+                            </a>
+                        </div>
+                    </div>
+
+                <div class="text-center mt-4">
+                    <a href="index.html">
+                        <button class="btn btn-custom">Ver Todos los Cursos</button>
+                    </a>
+                </div>
+            </div>
+    </section>
+<br>
+<br>
+<br>
+
+    </div>
+    </section>
+
+
+
+
+
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3 class="text-light mb-4">ALETHEIA</h3>
+                    <p>Revelando la verdad detrás de los mitos griegos para inspirar y educar a través de cursos
+                        .</p>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-light mb-4">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Nosotros</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Cursos</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Productos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-light mb-4">Contáctanos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">info@aletheia.com</li>
+                        <li class="mb-2">+52 123 456 7890</li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-light mb-4">Síguenos</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light fs-4">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="text-light fs-4">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="text-light fs-4">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="text-light fs-4">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="background-color: var(--accent-color);">
+            <div class="text-center">
+                <p class="mb-0">© 2025 Aletheia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
