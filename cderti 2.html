@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Olympus - Mitología Griega</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #242424 0%, #535353 50%, #242424 100%);
+            min-height: 100vh;
+            color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.5"/><circle cx="40" cy="80" r="1.5" fill="gold" opacity="0.4"/></pattern></defs><rect width="100%" height="100%" fill="url(%23stars)"/></svg>');
+            background-size: cover;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(229, 198, 135, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #e5c687, #f8f9fa, #e5c687);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(229, 198, 135, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(229, 198, 135, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 40px rgba(229, 198, 135, 0.8), 0 0 60px rgba(229, 198, 135, 0.4);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+
+        .form-container {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(229, 198, 135, 0.1), transparent);
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e5c687;
+            font-family: 'Cinzel', serif;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid rgba(229, 198, 135, 0.3);
+            border-radius: 12px;
+            background: rgba(248, 249, 250, 0.1);
+            color: #f8f9fa;
+            font-family: 'Crimson Text', serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #e5c687;
+            box-shadow: 0 0 20px rgba(229, 198, 135, 0.3);
+            background: rgba(248, 249, 250, 0.15);
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(248, 249, 250, 0.6);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #e5c687, #f8f9fa);
+            color: #242424;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(229, 198, 135, 0.3);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(248, 249, 250, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 198, 135, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .certificate {
+            display: none;
+            background: linear-gradient(135deg, #fff 0%, #f8f8ff 100%);
+            color: #333;
+            padding: 4rem;
+            border-radius: 20px;
+            margin: 3rem auto;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 8px solid #ffd700;
+        }
+
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #e5c687, #f8f9fa, #e5c687);
+            z-index: -1;
+            border-radius: 25px;
+        }
+
+        .cert-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cert-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #242424;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .cert-subtitle {
+            font-size: 1.2rem;
+            color: #535353;
+            font-style: italic;
+        }
+
+        .cert-body {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cert-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cert-name {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: #e5c687;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            padding: 1rem;
+            border-bottom: 3px solid #e5c687;
+            display: inline-block;
+        }
+
+        .cert-course {
+            font-size: 1.5rem;
+            color: #242424;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5c687;
+        }
+
+        .cert-date,
+        .cert-signature {
+            text-align: center;
+        }
+
+        .cert-signature {
+            font-family: 'Cinzel', serif;
+            font-style: italic;
+        }
+
+        .download-btn {
+            margin-top: 2rem;
+            background: linear-gradient(45deg, #242424, #535353);
+            color: #e5c687;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(45deg, #535353, #242424);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #e5c687;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+
+            .certificate {
+                padding: 2rem;
+                margin: 2rem 1rem;
+            }
+
+            .cert-name {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Aletheia</h1>
+            <p class="subtitle">Dominaste los Secretos de la Mitología Griega</p>
+
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="studentName">Nombre del Estudiante</label>
+                    <input type="text" id="studentName" name="studentName" placeholder="Ingresa tu nombre completo"
+                        required>
+                </div>
+                <button class="btn" onclick="generateCertificate()">
+                    ⚡ Generar Certificado
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="certificate" class="certificate">
+        <div class="cert-header">
+            <div class="cert-title">CERTIFICADO DE FINALIZACIÓN</div>
+            <div class="cert-subtitle">Aletheia</div>
+        </div>
+
+        <div class="cert-body">
+            <p class="cert-text">
+                Por medio del presente se certifica que
+            </p>
+            <div id="certName" class="cert-name"></div>
+            <p class="cert-text">
+                has completado satisfactoriamente el curso
+            </p>
+            <div class="cert-course">
+                "Mitología Griega: Dioses, Héroes y Leyendas del Olimpo"
+            </div>
+            <p class="cert-text">
+                Demostraste conocimiento excepcional en esta travesía,
+            </p>
+        </div>
+
+        <div class="cert-footer">
+            <div class="cert-date">
+                <strong>Fecha:</strong><br>
+                <span id="certDate"></span>
+            </div>
+            <div class="cert-signature">
+                <strong> Miguel Castaño</strong><br>
+                <strong> Manuela Zapata</strong><br>
+                <strong> Sebastián Rodas</strong><br>
+                <em>Directores Académicos</em><br>
+                Aletheia
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn download-btn" onclick="downloadCertificate()">
+                📥 Descargar Certificado
+            </button>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🏛️</div>
+            <h3 class="feature-title">Mitología Clásica</h3>
+            <p>Explora las historias épicas de Zeus, Poseidón, Hades y todos los dioses del Olimpo.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3 class="feature-title">Héroes Legendarios</h3>
+            <p>Conoce las aventuras de Hércules, Perseus, Teseo y otros héroes inmortales.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3 class="feature-title">Certificación Oficial</h3>
+            <p>Obtén tu certificado personalizado al completar el curso exitosamente.</p>
+        </div>
+    </div>
+
+    <!-- Incluir jsPDF desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        function generateCertificate() {
+            const studentName = document.getElementById('studentName').value.trim();
+
+            if (!studentName) {
+                alert('Por favor, ingresa tu nombre completo.');
+                return;
+            }
+
+            // Actualizar el certificado con el nombre del estudiante
+            document.getElementById('certName').textContent = studentName;
+
+            // Establecer la fecha actual
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('certDate').textContent = formattedDate;
+
+            // Mostrar el certificado con animación
+            const certificate = document.getElementById('certificate');
+            certificate.style.display = 'block';
+            certificate.scrollIntoView({ behavior: 'smooth' });
+
+            // Efecto de aparición
+            setTimeout(() => {
+                certificate.style.opacity = '0';
+                certificate.style.transform = 'scale(0.8)';
+                certificate.style.transition = 'all 0.5s ease';
+                certificate.style.opacity = '1';
+                certificate.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        function downloadCertificate() {
+            const studentName = document.getElementById('certName').textContent;
+
+            if (!studentName) {
+                alert('Primero genera tu certificado.');
+                return;
+            }
+
+            // Crear nuevo documento PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Configuración de colores
+            const goldColor = [229, 198, 135]; // #e5c687
+            const darkGray = [36, 36, 36]; // #242424
+            const mediumGray = [83, 83, 83]; // #535353
+            const lightColor = [248, 249, 250]; // #f8f9fa
+
+            // Fondo degradado
+            doc.setFillColor(...lightColor);
+            doc.rect(0, 0, 297, 210, 'F');
+
+            // Bordes decorativos
+            doc.setFillColor(...goldColor);
+            doc.rect(0, 0, 297, 8, 'F'); // Borde superior
+            doc.rect(0, 202, 297, 8, 'F'); // Borde inferior
+            doc.rect(0, 0, 8, 210, 'F'); // Borde izquierdo
+            doc.rect(289, 0, 8, 210, 'F'); // Borde derecho
+
+            // Marco interior
+            doc.setDrawColor(...goldColor);
+            doc.setLineWidth(2);
+            doc.rect(15, 15, 267, 180);
+
+            // Marco decorativo interior
+            doc.setLineWidth(1);
+            doc.rect(20, 20, 257, 170);
+
+            // Logo de Aletheia
+            doc.setFontSize(12);
+            doc.setFont('times', 'bold');
+            doc.setTextColor(...goldColor);
+            doc.text(' ALETHEIA ', 148.5 - doc.getTextWidth(' ALETHEIA ') / 2, 35);
+
+            // Título principal
+            doc.setFont('times', 'bold');
+            doc.setFontSize(32);
+            doc.setTextColor(...darkGray);
+            const title = 'CERTIFICADO DE FINALIZACIÓN';
+            const titleWidth = doc.getTextWidth(title);
+            doc.text(title, (297 - titleWidth) / 2, 50);
+
+            // Línea decorativa bajo el título
+            doc.setDrawColor(...goldColor);
+            doc.setLineWidth(3);
+            doc.line(50, 55, 247, 55);
+
+            // Subtítulo - Aletheia
+            doc.setFontSize(18);
+            doc.setFont('times', 'italic');
+            doc.setTextColor(...goldColor);
+            const subtitle = 'Aletheia';
+            const subtitleWidth = doc.getTextWidth(subtitle);
+            doc.text(subtitle, (297 - subtitleWidth) / 2, 65);
+
+            // Texto certificación
+            doc.setFontSize(14);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(...mediumGray);
+            const certText1 = 'Por medio del presente se certifica que';
+            const certText1Width = doc.getTextWidth(certText1);
+            doc.text(certText1, (297 - certText1Width) / 2, 85);
+
+            // Nombre del estudiante (destacado)
+            doc.setFontSize(28);
+            doc.setFont('times', 'bold');
+            doc.setTextColor(...goldColor);
+            const nameWidth = doc.getTextWidth(studentName.toUpperCase());
+            doc.text(studentName.toUpperCase(), (297 - nameWidth) / 2, 105);
+
+            // Línea bajo el nombre
+            doc.setDrawColor(...goldColor);
+            doc.setLineWidth(2);
+            const nameStart = (297 - nameWidth) / 2 - 10;
+            const nameEnd = (297 + nameWidth) / 2 + 10;
+            doc.line(nameStart, 110, nameEnd, 110);
+
+            // Texto continuación
+            doc.setFontSize(14);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(...mediumGray);
+            const certText2 = 'ha completado satisfactoriamente el curso';
+            const certText2Width = doc.getTextWidth(certText2);
+            doc.text(certText2, (297 - certText2Width) / 2, 125);
+
+            // Nombre del curso
+            doc.setFontSize(18);
+            doc.setFont('times', 'bold');
+            doc.setTextColor(...darkGray);
+            const courseName = '"Mitología Griega: Dioses, Héroes y Leyendas del Olimpo"';
+            const courseWidth = doc.getTextWidth(courseName);
+            doc.text(courseName, (297 - courseWidth) / 2, 140);
+
+            // Texto final
+            doc.setFontSize(12);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(...mediumGray);
+            const finalText = 'Demostrando conocimiento excepcional en las tradiciones,';
+            const finalText2 = 'historias y simbolismo de la antigua Grecia.';
+            const finalTextWidth = doc.getTextWidth(finalText);
+            const finalText2Width = doc.getTextWidth(finalText2);
+            doc.text(finalText, (297 - finalTextWidth) / 2, 155);
+            doc.text(finalText2, (297 - finalText2Width) / 2, 165);
+
+            // Fecha
+            doc.setFontSize(12);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(...darkGray);
+            const currentDate = new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            doc.text('Fecha:', 40, 175);
+            doc.text(currentDate, 80, 175);
+
+            // Firmas de los tres directores
+            doc.text(' Miguel Castaño', 180, 175);
+            doc.text(' Manuela Zapata', 180, 185);
+            doc.text(' Sebastián Rodas', 180, 195);
+            doc.setFont('times', 'italic');
+            doc.setFontSize(10);
+            doc.text('Directores Académicos', 180, 205);
+            doc.text('Aletheia', 220, 205);
+
+
+
+            // Elementos decorativos - esquinas
+            doc.setFillColor(...goldColor);
+            doc.circle(25, 25, 3, 'F');
+            doc.circle(272, 25, 3, 'F');
+            doc.circle(25, 185, 3, 'F');
+            doc.circle(272, 185, 3, 'F');
+
+            // Sellos decorativos
+            doc.setFillColor(...goldColor);
+            doc.setDrawColor(...darkGray);
+            doc.setLineWidth(2);
+
+            // Sello izquierdo
+            doc.circle(35, 110, 8);
+            doc.setFontSize(8);
+            doc.setTextColor(...darkGray);
+            doc.text('⚡', 32, 113);
+
+            // Sello derecho
+            doc.circle(262, 110, 8);
+            doc.text('', 259, 113);
+
+            // Guardar el PDF
+            const fileName = `Certificado_Mitologia_Griega_${studentName.replace(/\s+/g, '_')}.pdf`;
+            doc.save(fileName);
+
+            // Mostrar mensaje de éxito
+            alert('¡Certificado PDF descargado exitosamente! 🏆');
+        }
+
+        // Efecto de partículas en el fondo
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = Math.random() * 4 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 215, 0, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Agregar animación CSS para las partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Inicializar partículas cuando se carga la página
+        window.addEventListener('load', createParticles);
+
+        // Permitir generar certificado presionando Enter
+        document.getElementById('studentName').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                generateCertificate();
+            }
+        });
+    </script>
+</body>
+
+</html>

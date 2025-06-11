@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divierte con aletheia</title>
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS Corregido</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Georgia', serif;
+                background: linear-gradient(#000000);
+                color: #ffffff;
+                line-height: 1.6;
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            .floating-particles {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .particle {
+                position: absolute;
+                color: #a78016;
+                font-size: 12px;
+                opacity: 0.6;
+                animation: float-particle 10s linear infinite;
+            }
+
+            .particle:nth-child(odd) {
+                animation-duration: 15s;
+                color: #999595;
+            }
+
+            .particle:nth-child(3n) {
+                animation-duration: 20s;
+                color: #ffffff;
+            }
+
+            /* Header */
+            .hero {
+                position: relative;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background: (#999595);
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+                font-weight: bold;
+                color: #a78016;
+                text-shadow: 0 0 30px rgba(167, 128, 22, 0.5);
+                margin-bottom: 20px;
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+
+            .hero p {
+                font-size: 1.4rem;
+                max-width: 600px;
+                margin-bottom: 40px;
+                color: #ffffff;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            /* Navegación */
+            .nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: #535353;
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                padding: 15px 0;
+                transition: all 0.3s ease;
+                border-bottom: 1px solid #a78016;
+            }
+
+            .nav-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .nav-logo {
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: #a78016;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 30px;
+            }
+
+            .nav-links a {
+                color: #ffffff;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 25px;
+                transition: all 0.3s ease;
+                position: relative;
+                border: 1px solid transparent;
+            }
+
+            .nav-links a:hover {
+                background: #a78016;
+                color: #000000;
+                border-color: #ffffff;
+                transform: translateY(-3px);
+            }
+
+            /* Contenido principal */
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+
+            .section {
+                margin-bottom: 80px;
+                position: relative;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                color: #a78016;
+                text-align: center;
+                margin-bottom: 50px;
+                position: relative;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, #a78016, transparent);
+            }
+
+            /* Grid de historias */
+            .stories-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                gap: 40px;
+                margin-top: 50px;
+            }
+
+            .story-card {
+                background-color: #000000;
+                padding: 40px;
+                border-radius: 20px;
+                border: 2px solid #a78016;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .story-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(167, 128, 22, 0.3);
+                border-color: #ffffff;
+            }
+
+            /* ELIMINADO EL PSEUDO-ELEMENTO QUE CAUSABA EL PROBLEMA */
+            /* Ya no hay overlay negro en hover */
+
+            .story-number {
+                font-size: 3rem;
+                color: #a78016;
+                font-weight: bold;
+                margin-bottom: 20px;
+                text-shadow: 0 0 20px rgba(167, 128, 22, 0.5);
+            }
+
+            .story-title {
+                font-size: 1.8rem;
+                color: #ffffff;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+
+            .story-content {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #ffffff;
+                text-align: justify;
+            }
+
+            /* Personajes */
+            .characters-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 50px;
+            }
+
+            .character-card {
+                background-color: #000000;
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+                transition: all 0.3s ease;
+                border: 2px solid #a78016;
+            }
+
+            .character-card:hover {
+                border-color: #ffffff;
+                box-shadow: 0 10px 30px rgba(167, 128, 22, 0.2);
+                transform: translateY(-5px);
+            }
+
+            .character-icon {
+                font-size: 4rem;
+                margin-bottom: 20px;
+                display: block;
+                filter: drop-shadow(0 0 20px rgba(167, 128, 22, 0.5));
+            }
+
+            .character-name {
+                font-size: 1.5rem;
+                color: #a78016;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
+
+            .character-desc {
+                color: #ffffff;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            /* Juego de sopa de letras */
+            .game-container {
+                background: linear-gradient(145deg, #000000, #999595);
+                padding: 40px;
+                border-radius: 20px;
+                border: 2px solid #a78016;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .game-info {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .game-info h3 {
+                color: #a78016;
+                margin-bottom: 15px;
+            }
+
+            .game-info>div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .game-info button {
+                background: linear-gradient(45deg, #a78016, #ffffff);
+                color: #000000;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .game-info button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(167, 128, 22, 0.3);
+            }
+
+            .word-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 2px;
+                margin: 30px auto;
+                max-width: 480px;
+                justify-content: center;
+            }
+
+            .words-list {
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .words-list h4 {
+                color: #a78016;
+                margin-bottom: 15px;
+            }
+
+            #wordsList {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            /* Animaciones */
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 30px rgba(167, 128, 22, 0.5);
+                }
+
+                to {
+                    text-shadow: 0 0 50px rgba(167, 128, 22, 0.8), 0 0 80px rgba(167, 128, 22, 0.3);
+                }
+            }
+
+            @keyframes backgroundPulse {
+
+                0%,
+                100% {
+                    background:
+                        radial-gradient(circle at 20% 80%, rgba(167, 128, 22, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(153, 149, 149, 0.08) 0%, transparent 50%);
+                }
+
+                50% {
+                    background:
+                        radial-gradient(circle at 60% 30%, rgba(167, 128, 22, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 80%, rgba(153, 149, 149, 0.12) 0%, transparent 60%);
+                }
+            }
+
+            @keyframes float-particle {
+                0% {
+                    transform: translateY(100vh) translateX(0px) rotate(0deg);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 0.6;
+                }
+
+                90% {
+                    opacity: 0.6;
+                }
+
+                100% {
+                    transform: translateY(-20px) translateX(100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero p {
+                    font-size: 1.1rem;
+                }
+
+                .stories-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .characters-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    </html>
+</head>
+
+<body>
+    <!-- Partículas flotantes -->
+    <div class="floating-particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;">✦</div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;">◆</div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;">✧</div>
+        <div class="particle" style="left: 40%; animation-delay: 1s;">◇</div>
+        <div class="particle" style="left: 60%; animation-delay: 3s;">✦</div>
+        <div class="particle" style="left: 70%; animation-delay: 5s;">◆</div>
+        <div class="particle" style="left: 80%; animation-delay: 2.5s;">✧</div>
+        <div class="particle" style="left: 90%; animation-delay: 4.5s;">◇</div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <img src="imagenes/Recurso 1.png" alt="Logo Aletheia" class="nav-logo" style="width: 80px; height: 80px;">
+            <div class="nav-links">
+                <a href="#origen">Origen</a>
+                <a href="#guerra">Guerra</a>
+                <a href="#heroes">Héroes</a>
+                <a href="#dioses">Dioses</a>
+                <a href="#juego">Sopa de Letras</a>
+                <a href="index.html">Inicio</a>
+                <a href="apartado de juegos.html">Más Juegos</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 style="color: #ffffff;">DIVIERTETE CON ALETHEIA</h1>
+        <p>Descubre los secretos perdidos del Monte Olimpo, donde dioses y mortales forjaron el destino del mundo en una
+            guerra que cambió la historia para siempre.</p>
+        <div style="font-size: 2rem; animation: float 3s ease-in-out infinite;">⚡🏛️⚡</div>
+    </section>
+
+    <div class="container">
+        <section id="origen" class="section">
+            <h2 class="section-title" style="color:white ;">EL GRAN CATACLISMO</h2>
+            <div class="stories-grid">
+                <div class="story-card" onclick="expandStory(this)">
+                    <div class="story-number">01</div>
+                    <h3 class="story-title">La Ruptura del Cielo</h3>
+                    <div class="story-content">
+                        El cielo se desgarró como una tela antigua... Un rugido ensordecedor resonó por toda la tierra
+                        cuando Cronos, el Titán del Tiempo, liberó su furia final. Las montañas temblaron, los océanos
+                        se alzaron, y el Monte Olimpo se partió en dos.
+                        <br><br>
+                        Los dioses, sorprendidos por la violencia del cataclismo, apenas lograron escapar a las
+                        dimensiones superiores. Cuando el polvo se asentó, el mundo había cambiado para siempre. Dos
+                        reinos emergieron de las cenizas: Aetheria, el reino celestial, y Gaia, la tierra renovada.
+                    </div>
+                </div>
+
+                <div class="story-card" onclick="expandStory(this)">
+                    <div class="story-number">02</div>
+                    <h3 class="story-title" style="color: #ffffff;">Los Supervivientes</h3>
+                    <div class="story-content">
+                        Entre los escombros del Olimpo, los supervivientes se reunieron en el único lugar que permanecía
+                        intacto: el Altar de Hestia. Allí, dioses menores y mortales bendecidos tomaron una decisión que
+                        marcaría el futuro.
+                        <br><br>
+                        Algunos eligieron seguir a Atenea hacia las tierras altas, donde la sabiduría y la estrategia
+                        gobernarían. Otros siguieron a Ares hacia los valles profundos, donde la fuerza y el honor
+                        serían supremos. Así nacieron los Clanes Divinos.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guerra" class="section">
+            <h2 class="section-title">LA GUERRA DE LOS CLANES</h2>
+            <div class="stories-grid">
+                <div class="story-card" onclick="expandStory(this)">
+                    <div class="story-number">03</div>
+                    <h3 class="story-title">El Clan de Atenea</h3>
+                    <div class="story-content">
+                        En las montañas de cristal, donde la luz del conocimiento nunca se apaga, los seguidores de
+                        Atenea construyeron ciudades de mármol blanco. Desarrollaron artes místicas que combinaban magia
+                        y ciencia, creando prodigios que desafiaban las leyes de la naturaleza.
+                        <br><br>
+                        Su símbolo, el búho dorado, representaba la sabiduría eterna. Pero su búsqueda del conocimiento
+                        absoluto los llevó por caminos peligrosos, experimentando con fuerzas que ni siquiera los dioses
+                        dominaban completamente.
+                    </div>
+                </div>
+
+                <div class="story-card" onclick="expandStory(this)">
+                    <div class="story-number">04</div>
+                    <h3 class="story-title">El Clan de Ares</h3>
+                    <div class="story-content">
+                        En los valles de hierro, donde el eco de los martillos nunca cesa, los guerreros de Ares
+                        forjaron una sociedad basada en el honor y la fuerza. Sus fortalezas de obsidiana se alzaban
+                        como montañas artificiales, defendidas por guerreros que habían trascendido los límites
+                        mortales.
+                        <br><br>
+                        Portaban el escudo del león de fuego, símbolo de su valor inquebrantable. Creían que solo a
+                        través del combate y la superación personal se podía alcanzar la verdadera grandeza. Sus
+                        campeones eran leyendas vivientes.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="heroes" class="section">
+            <h2 class="section-title">LOS HÉROES LEGENDARIOS</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <span class="character-icon">🏹</span>
+                    <h3 class="character-name">Artemisa la Cazadora</h3>
+                    <p class="character-desc">Guardiana de los bosques sagrados, puede comunicarse con todas las
+                        criaturas salvajes. Su arco nunca falla y sus flechas pueden atravesar dimensiones.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-icon">🔱</span>
+                    <h3 class="character-name">Poseidón el Señor de las Profundidades</h3>
+                    <p class="character-desc">Controla todos los océanos y mares. Puede invocar tsunamis y hablar con
+                        los leviatanes del abismo. Su tridente puede partir continentes.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-icon">🌟</span>
+                    <h3 class="character-name">Apolo el Portador de Luz</h3>
+                    <p class="character-desc">Maestro de la música, la profecía y la luz solar. Sus canciones pueden
+                        sanar cualquier herida o maldición. Ve todos los futuros posibles.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-icon">🖤</span>
+                    <h3 class="character-name">Hades el Rey de las Sombras</h3>
+                    <p class="character-desc">Señor del inframundo y guardián de los secretos más oscuros. Puede viajar
+                        entre los mundos de vivos y muertos libremente.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-icon">🌹</span>
+                    <h3 class="character-name">Afrodita la Encantadora</h3>
+                    <p class="character-desc">Diosa del amor y la belleza, puede influir en los corazones de mortales y
+                        dioses. Sus encantos pueden detener guerras o iniciarlas.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-icon">🔥</span>
+                    <h3 class="character-name">Hefesto el Forjador</h3>
+                    <p class="character-desc">Maestro herrero divino, creador de armas legendarias. Puede forjar objetos
+                        con propiedades mágicas usando el fuego del núcleo terrestre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dioses" class="section">
+            <h2 class="section-title">EL PANTEÓN SUPREMO</h2>
+            <div class="story-card" style="max-width: 800px; margin: 0 auto;">
+                <div class="story-number">∞</div>
+                <h3 class="story-title">Zeus - El Rey de los Dioses</h3>
+                <div class="story-content">
+                    Desde su trono de rayos en la cumbre más alta del Olimpo renovado, Zeus observa el equilibrio entre
+                    los clanes. Su poder trasciende la comprensión mortal: puede manipular el tiempo, crear realidades
+                    alternativas y su palabra es ley absoluta en todos los planos de existencia.
+                    <br><br>
+                    Después del Gran Cataclismo, Zeus estableció las Leyes Cósmicas que mantienen el orden entre los
+                    clanes. Su presencia es tan poderosa que aparece raramente en forma física, prefiriendo comunicarse
+                    a través de señales y visiones.
+                    <br><br>
+                    Se dice que está preparando algo grande... una reunificación final que cambiará el destino de dioses
+                    y mortales para siempre.
+                </div>
+            </div>
+        </section>
+
+        <section id="juego" class="section">
+            <h2 class="section-title">SOPA DE LETRAS MÍTICA</h2>
+            <div class="game-container">
+                <div class="game-info">
+                    <h3>Encuentra las palabras ocultas de la mitología griega</h3>
+                    <div>
+                        <div style="color: #ffffff;">Palabras encontradas: <span id="wordsFound"
+                                style="color: #a78016; font-weight: bold;">0/8</span></div>
+                        <div style="color: #ffffff;">Tiempo: <span id="timer"
+                                style="color: #ffffff; font-weight: bold;">00:00</span></div>
+                        <button onclick="resetGame()">Nuevo Juego</button>
+                    </div>
+                </div>
+
+                <div class="word-grid" id="wordGrid"></div>
+
+                <div class="words-list">
+                    <h4>Palabras a encontrar:</h4>
+                    <div id="wordsList"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function createFloatingParticles() {
+            const particlesContainer = document.querySelector('.floating-particles');
+            const particles = ['⚡', '🌟', '✨', '🔥', '💫', '⭐', '🌙', '☄️'];
+
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.fontSize = (Math.random() * 10 + 8) + 'px';
+
+                particlesContainer.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 12000);
+            }, 800);
+        }
+        // Juego de Sopa de Letras
+        class WordSearchGame {
+            constructor() {
+                this.gridSize = 12;
+                this.words = ['ZEUS', 'ATENEA', 'ARES', 'APOLO', 'HADES', 'POSEIDON', 'ARTEMISA', 'HEFESTO'];
+                this.grid = [];
+                this.placedWords = [];
+                this.foundWords = [];
+                this.foundWordsCells = new Set(); // Nuevo: almacenar celdas de palabras encontradas
+                this.selectedCells = [];
+                this.isSelecting = false;
+                this.startTime = null;
+                this.timerInterval = null;
+
+                this.initializeGame();
+                this.startTimer();
+            }
+
+            initializeGame() {
+                this.createEmptyGrid();
+                this.placeWords();
+                this.fillEmptySpaces();
+                this.renderGrid();
+                this.renderWordsList();
+            }
+
+            createEmptyGrid() {
+                this.grid = Array(this.gridSize).fill().map(() => Array(this.gridSize).fill(''));
+            }
+
+            placeWords() {
+                this.placedWords = [];
+
+                for (let word of this.words) {
+                    let placed = false;
+                    let attempts = 0;
+
+                    while (!placed && attempts < 100) {
+                        const direction = Math.floor(Math.random() * 8);
+                        const startRow = Math.floor(Math.random() * this.gridSize);
+                        const startCol = Math.floor(Math.random() * this.gridSize);
+
+                        if (this.canPlaceWord(word, startRow, startCol, direction)) {
+                            this.placeWord(word, startRow, startCol, direction);
+                            placed = true;
+                        }
+                        attempts++;
+                    }
+                }
+            }
+
+            canPlaceWord(word, row, col, direction) {
+                const directions = [
+                    [-1, -1], [-1, 0], [-1, 1],
+                    [0, -1], [0, 1],
+                    [1, -1], [1, 0], [1, 1]
+                ];
+
+                const [dRow, dCol] = directions[direction];
+
+                for (let i = 0; i < word.length; i++) {
+                    const newRow = row + i * dRow;
+                    const newCol = col + i * dCol;
+
+                    if (newRow < 0 || newRow >= this.gridSize ||
+                        newCol < 0 || newCol >= this.gridSize) {
+                        return false;
+                    }
+
+                    if (this.grid[newRow][newCol] !== '' &&
+                        this.grid[newRow][newCol] !== word[i]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            placeWord(word, row, col, direction) {
+                const directions = [
+                    [-1, -1], [-1, 0], [-1, 1],
+                    [0, -1], [0, 1],
+                    [1, -1], [1, 0], [1, 1]
+                ];
+
+                const [dRow, dCol] = directions[direction];
+                const positions = [];
+
+                for (let i = 0; i < word.length; i++) {
+                    const newRow = row + i * dRow;
+                    const newCol = col + i * dCol;
+                    this.grid[newRow][newCol] = word[i];
+                    positions.push([newRow, newCol]);
+                }
+
+                this.placedWords.push({
+                    word: word,
+                    positions: positions
+                });
+            }
+
+            fillEmptySpaces() {
+                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                for (let i = 0; i < this.gridSize; i++) {
+                    for (let j = 0; j < this.gridSize; j++) {
+                        if (this.grid[i][j] === '') {
+                            this.grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+                        }
+                    }
+                }
+            }
+
+            renderGrid() {
+                const gridElement = document.getElementById('wordGrid');
+                gridElement.innerHTML = '';
+
+                for (let i = 0; i < this.gridSize; i++) {
+                    for (let j = 0; j < this.gridSize; j++) {
+                        const cell = document.createElement('div');
+                        cell.textContent = this.grid[i][j];
+                        cell.style.cssText = `
+                    width: 35px;
+                    height: 35px;
+                    background: linear-gradient(145deg, #000000, #999595);
+                    color: #ffffff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    cursor: pointer;
+                    border: 1px solid #a78016;
+                    border-radius: 5px;
+                    transition: all 0.2s ease;
+                    user-select: none;
+                `;
+                        cell.dataset.row = i;
+                        cell.dataset.col = j;
+                        cell.addEventListener('mousedown', (e) => this.onCellMouseDown(e, cell));
+                        cell.addEventListener('mouseover', (e) => this.onCellMouseOver(e, cell));
+                        cell.addEventListener('mouseup', (e) => this.onCellMouseUp(e, cell));
+                        gridElement.appendChild(cell);
+                    }
+                }
+            }
+
+            renderWordsList() {
+                const wordsListElement = document.getElementById('wordsList');
+                wordsListElement.innerHTML = '';
+
+                for (let word of this.words) {
+                    const wordElement = document.createElement('span');
+                    wordElement.textContent = word;
+                    wordElement.style.cssText = `
+                background: linear-gradient(45deg, #a78016, #ffffff);
+                color: #000000;
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-weight: bold;
+                margin: 5px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            `;
+                    wordElement.addEventListener('click', () => this.onWordClick(word));
+                    wordsListElement.appendChild(wordElement);
+                }
+            }
+
+            onCellMouseDown(event, cell) {
+                if (event.button !== 0) return; // Solo permitir clic izquierdo
+                this.isSelecting = true;
+                this.selectedCells = [];
+                this.selectCell(cell);
+            }
+
+            onCellMouseOver(event, cell) {
+                if (!this.isSelecting) return;
+                this.selectCell(cell);
+            }
+
+            onCellMouseUp(event, cell) {
+                if (event.button !== 0) return; // Solo permitir clic izquierdo
+                this.isSelecting = false;
+                this.checkSelectedCells();
+            }
+
+            selectCell(cell) {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                const cellKey = `${row}-${col}`;
+
+                // No seleccionar si ya es parte de una palabra encontrada
+                if (this.foundWordsCells.has(cellKey)) return;
+
+                if (!this.selectedCells.some(c => c.row === row && c.col === col)) {
+                    this.selectedCells.push({ row, col });
+                    // Estilo temporal para selección
+                    cell.style.background = 'linear-gradient(145deg, #a78016, #ffcc00)';
+                    cell.style.color = '#000000';
+                    cell.style.border = '2px solid #ffffff';
+                }
+            }
+
+            onWordClick(word) {
+                const foundWord = this.placedWords.find(w => w.word === word);
+                if (foundWord && !this.foundWords.includes(word)) {
+                    this.foundWords.push(word);
+                    this.updateFoundWordsCount();
+                    this.highlightWord(foundWord);
+                    this.updateWordsList(); // Actualizar la lista de palabras
+                }
+            }
+
+            checkSelectedCells() {
+                const selectedWord = this.selectedCells.map(c => this.grid[c.row][c.col]).join('');
+                const foundWord = this.placedWords.find(w => w.word === selectedWord);
+
+                if (foundWord && !this.foundWords.includes(foundWord.word)) {
+                    this.foundWords.push(foundWord.word);
+                    this.updateFoundWordsCount();
+                    this.highlightWord(foundWord);
+                    this.updateWordsList(); // Actualizar la lista de palabras
+                } else {
+                    this.resetSelectedCells();
+                }
+            }
+
+            highlightWord(foundWord) {
+                for (let pos of foundWord.positions) {
+                    const cellKey = `${pos[0]}-${pos[1]}`;
+                    this.foundWordsCells.add(cellKey); // Agregar a palabras encontradas
+
+                    const cell = document.querySelector(`div[data-row="${pos[0]}"][data-col="${pos[1]}"]`);
+                    if (cell) {
+                        // Estilo más visible para las palabras encontradas
+                        cell.style.background = 'linear-gradient(145deg, #ff0000, #cc0000)';
+                        cell.style.color = '#ffffff';
+                        cell.style.fontWeight = 'bold';
+                        cell.style.textShadow = '2px 2px 4px rgba(0,0,0,0.8)';
+                        cell.style.border = '2px solid #ffff00'; // Borde amarillo para destacar
+                        cell.style.boxShadow = '0 0 10px rgba(255,0,0,0.5)';
+                        cell.style.transform = 'scale(1.05)'; // Ligeramente más grande
+                    }
+                }
+            }
+
+            resetSelectedCells() {
+                for (let cell of document.querySelectorAll('#wordGrid div')) {
+                    const row = parseInt(cell.dataset.row);
+                    const col = parseInt(cell.dataset.col);
+                    const cellKey = `${row}-${col}`;
+
+                    // Solo resetear celdas que NO son palabras encontradas
+                    if (!this.foundWordsCells.has(cellKey)) {
+                        // Restaurar estilo original
+                        cell.style.background = 'linear-gradient(145deg, #000000, #999595)';
+                        cell.style.color = '#ffffff';
+                        cell.style.textShadow = '';
+                        cell.style.border = '1px solid #a78016';
+                        cell.style.boxShadow = '';
+                        cell.style.transform = '';
+                    }
+                }
+                this.selectedCells = [];
+            }
+
+            updateWordsList() {
+                const wordsListElement = document.getElementById('wordsList');
+                wordsListElement.innerHTML = '';
+
+                for (let word of this.words) {
+                    const wordElement = document.createElement('span');
+                    wordElement.textContent = word;
+
+                    const isFound = this.foundWords.includes(word);
+                    wordElement.style.cssText = `
+                background: ${isFound ? 'linear-gradient(45deg, #ff0000, #ff6666)' : 'linear-gradient(45deg, #a78016, #ffffff)'};
+                color: ${isFound ? '#ffffff' : '#000000'};
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-weight: bold;
+                margin: 5px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                text-decoration: ${isFound ? 'line-through' : 'none'};
+                opacity: ${isFound ? '0.7' : '1'};
+            `;
+
+                    if (!isFound) {
+                        wordElement.addEventListener('click', () => this.onWordClick(word));
+                    }
+                    wordsListElement.appendChild(wordElement);
+                }
+            }
+
+            updateFoundWordsCount() {
+                const wordsFoundElement = document.getElementById('wordsFound');
+                wordsFoundElement.textContent = `${this.foundWords.length}/${this.words.length}`;
+                if (this.foundWords.length === this.words.length) {
+                    clearInterval(this.timerInterval);
+                    alert('¡Felicidades! Has encontrado todas las palabras.');
+                }
+            }
+
+            resetGame() {
+                this.foundWords = [];
+                this.foundWordsCells.clear(); // Limpiar celdas encontradas
+                this.selectedCells = [];
+                this.isSelecting = false;
+                this.initializeGame();
+                this.resetSelectedCells();
+                this.updateFoundWordsCount();
+                this.startTimer();
+            }
+
+            startTimer() {
+                this.startTime = Date.now();
+                const timerElement = document.getElementById('timer');
+                clearInterval(this.timerInterval);
+                this.timerInterval = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+                    const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                    const seconds = String(elapsed % 60).padStart(2, '0');
+                    timerElement.textContent = `${minutes}:${seconds}`;
+                }, 1000);
+            }
+        }
+
+        const wordSearchGame = new WordSearchGame();
+        createFloatingParticles();
+
+    </script>
+</body>
+
+</html>

@@ -10,6 +10,10 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
         rel="stylesheet">
     <style>
+        body {
+            color: #000000;
+        }
+
         :root {
             --primary-color: #000000;
             --secondary-color: #d4af37;
@@ -19,7 +23,7 @@
         }
 
         body {
-            font-family:  'Times New Roman', Times, serif; 
+            font-family: 'Times New Roman', Times, serif;
             color: var(--dark-color);
             background-color: var(--light-color);
         }
@@ -37,9 +41,9 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            background: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), url('/api/placeholder/1200/600') center/cover no-repeat;
             height: 80vh;
-            color: white;
+            color: rgb(0, 0, 0);
             display: flex;
             align-items: center;
             text-align: center;
@@ -114,7 +118,7 @@
         }
 
         .footer {
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
             color: white;
         }
 
@@ -172,8 +176,9 @@
             <img src="imagenes/Recurso 1.png" width="150px" class="img-fluid mb-4">
             <p class="lead mb-4">Descubre la verdad detrás de la mitología griega a través de nuestros cursos y
                 productos inspiradores</p>
-            <button class="btn btn-custom me-2"><a href="index.html">Explorar Cursos</a></button>
-            
+            <a href="index.html">
+                <button class="btn btn-custom">Explorar Cursos</button>
+            </a>
     </section>
 
     <section class="py-5" id="nosotros">
@@ -181,7 +186,7 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
                     <h2 class="section-title">Acerca de Nosotros</h2>
-                    <p class="lead">En la mitología griega, Aletheia (Αλήθεια) representa la verdad y la sinceridad.
+                    <p class="lead">En la mitología griega, Aletheia representa la verdad y la sinceridad.
                         Nuestra esencia es revelar la sabiduría atemporal de la antigua Grecia.</p>
                 </div>
             </div>
@@ -205,8 +210,12 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="imagenes/ultima foto para la pagina 2.png" alt="Mitología Griega"
-                        class="img-fluid rounded shadow">
+                    <video src="video/Comp 1.mp4" style="width: 100%; height: auto;" controls>
+                        <track kind="captions" label="Español" srclang="es" src="video/Comp 1.mp4">
+                        <source src="video/Comp 1.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+
+                    </video>
                 </div>
             </div>
         </div>
@@ -246,7 +255,7 @@
                     <div class="card feature-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="greek-symbol">Δ</div>
-                            <h3>Objectivo Especifico</h3>
+                            <h3>Objetivo Especifico</h3>
                             <p>Mejorar la calidad para el público: Crear
                                 contenido atractivo y entretenido basado en la
                                 mitología. Utilizar la mitología para inspirar a
@@ -266,7 +275,8 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
-                        <img src="/api/placeholder/400/250" class="card-img-top" alt="Curso de Mitología Básica">
+                        <img src="imagenes/ultima foto para la pagina.png" class="card-img-top"
+                            alt="Curso de Mitología Básica">
                         <div class="card-body">
                             <h4>Inducción a la mitología </h4>
                             <p>Adentrate a un maravilloso mundo de mitologia griega, que va estar llenó de magía y
@@ -280,7 +290,8 @@
 
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
-                        <img src="/api/placeholder/400/250" class="card-img-top" alt="Curso de Mitología Avanzada">
+                        <img src="imagenes/ultima foto para la pagina 2.png" class="card-img-top"
+                            alt="Curso de Mitología Avanzada">
                         <div class="card-body">
                             <h4>Mitología Avanzada</h4>
                             <p>Explora los mitos y leyendas más complejos de la mitología griega, desde los héroes hasta
@@ -291,16 +302,16 @@
                         </div>
                     </div>
 
-                <div class="text-center mt-4">
-                    <a href="index.html">
-                        <button class="btn btn-custom">Ver Todos los Cursos</button>
-                    </a>
+                    <div class="text-center mt-4">
+                        <a href="index.html">
+                            <button class="btn btn-custom">Ver Todos los Cursos</button>
+                        </a>
+                    </div>
                 </div>
-            </div>
     </section>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 
     </div>
     </section>
