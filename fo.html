@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitología Griega - Foro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #B8860B;
+            --light-gold: #FFDF4D;
+            --dark-gray: #2C2C2C;
+            --medium-gray: #4A4A4A;
+            --light-gray: #6C6C6C;
+            --very-light-gray: #F8F9FA;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+        }
+
+        .navbar-custom {
+            background-color: var(--dark-gray) !important;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .navbar-brand {
+            color: var(--gold) !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--light-gold) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23333" width="1200" height="600"/><path fill="%23555" d="M0 400l50-16.7c50-16.6 150-50 250-50s200 33.4 250 50 100 16.7 150 16.7 100-16.7 150-16.7 100 0 150 16.7l50 16.6V600H0z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+        }
+
+        .hero-title {
+            color: var(--gold);
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-subtitle {
+            color: #cccccc;
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+
+        .forum-card {
+            background-color: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .forum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+            border-color: var(--gold);
+        }
+
+        .forum-icon {
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .forum-title {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .forum-description {
+            color: #cccccc;
+            margin: 10px 0;
+        }
+
+        .forum-stats {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--medium-gray);
+            padding-top: 15px;
+        }
+
+        .recent-posts-section {
+            background-color: var(--dark-gray);
+            border-radius: 10px;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .section-header {
+            background-color: var(--dark-red);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
+            font-weight: bold;
+        }
+
+        .post-item {
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 15px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-item:hover {
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-title {
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .post-meta {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .sidebar-card {
+            background-color: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .online-count {
+            color: var(--dark-red);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--dark-red);
+            border-color: var(--dark-red);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--light-red);
+            border-color: var(--light-red);
+        }
+
+        .footer {
+            background-color: var(--dark-gray);
+            color: #cccccc;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 2px solid var(--dark-red);
+        }
+
+        .modal-content {
+            background-color: var(--dark-gray);
+            color: white;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .modal-title {
+            color: var(--dark-red);
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        .thread-item {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--dark-red);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .thread-item:hover {
+            background-color: rgba(139, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-bolt me-2"></i>Mitología Griega
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home me-1"></i>Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-users me-1"></i>Miembros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-search me-1"></i>Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user me-1"></i>Mi Perfil</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="hero-title">Bienvenido al Olimpo Digital</h1>
+            <p class="hero-subtitle">Explora los misterios y leyendas de la mitología griega</p>
+            <button class="btn btn-primary-custom btn-lg mt-3">
+                <i class="fas fa-feather-alt me-2"></i>Únete a la Discusión
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Forum Sections -->
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">
+                    <i class="fas fa-comments me-2" style="color: var(--gold);"></i>
+                    Categorías del Foro
+                </h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card forum-card h-100" onclick="openModal('dioses')">
+                            <div class="card-body text-center">
+                                <i class="fas fa-crown forum-icon"></i>
+                                <h5 class="forum-title">Dioses del Olimpo</h5>
+                                <p class="forum-description">
+                                    Discusiones sobre Zeus, Hera, Poseidón y todos los dioses principales
+                                </p>
+                                <div class="forum-stats d-flex justify-content-between">
+                                    <span><i class="fas fa-comments me-1"></i>247 temas</span>
+                                    <span><i class="fas fa-users me-1"></i>1,834 mensajes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card forum-card h-100" onclick="openModal('heroes')">
+                            <div class="card-body text-center">
+                                <i class="fas fa-sword forum-icon"></i>
+                                <h5 class="forum-title">Héroes y Semidioses</h5>
+                                <p class="forum-description">
+                                    Historias de Hércules, Perseo, Teseo y otros grandes héroes
+                                </p>
+                                <div class="forum-stats d-flex justify-content-between">
+                                    <span><i class="fas fa-comments me-1"></i>189 temas</span>
+                                    <span><i class="fas fa-users me-1"></i>1,293 mensajes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card forum-card h-100" onclick="openModal('monstruos')">
+                            <div class="card-body text-center">
+                                <i class="fas fa-dragon forum-icon"></i>
+                                <h5 class="forum-title">Monstruos y Criaturas</h5>
+                                <p class="forum-description">
+                                    Medusa, Minotauro, Cíclopes y otras criaturas mitológicas
+                                </p>
+                                <div class="forum-stats d-flex justify-content-between">
+                                    <span><i class="fas fa-comments me-1"></i>156 temas</span>
+                                    <span><i class="fas fa-users me-1"></i>987 mensajes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card forum-card h-100" onclick="openModal('lugares')">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mountain forum-icon"></i>
+                                <h5 class="forum-title">Lugares Míticos</h5>
+                                <p class="forum-description">
+                                    El Olimpo, Hades, Atlántida y otros lugares legendarios
+                                </p>
+                                <div class="forum-stats d-flex justify-content-between">
+                                    <span><i class="fas fa-comments me-1"></i>98 temas</span>
+                                    <span><i class="fas fa-users me-1"></i>634 mensajes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Posts -->
+                <div class="recent-posts-section mt-5">
+                    <div class="section-header">
+                        <i class="fas fa-clock me-2"></i>Publicaciones Recientes
+                    </div>
+                    <div class="post-item">
+                        <div class="post-title">¿Por qué Zeus se convirtió en el rey de los dioses?</div>
+                        <div class="post-meta">
+                            Por <strong>Hermes_Mensajero</strong> - Hace 2 horas - 
+                            <span class="text-success">12 respuestas</span>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-title">La verdadera historia detrás del caballo de Troya</div>
+                        <div class="post-meta">
+                            Por <strong>Atenea_Sabia</strong> - Hace 4 horas - 
+                            <span class="text-success">8 respuestas</span>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-title">Comparación entre versiones de la Odisea</div>
+                        <div class="post-meta">
+                            Por <strong>Homero_Fan</strong> - Hace 6 horas - 
+                            <span class="text-success">15 respuestas</span>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-title">¿Qué simboliza realmente la caja de Pandora?</div>
+                        <div class="post-meta">
+                            Por <strong>Mitologia_Moderna</strong> - Hace 1 día - 
+                            <span class="text-success">23 respuestas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Online Users -->
+                <div class="sidebar-card">
+                    <div class="section-header">
+                        <i class="fas fa-users me-2"></i>Usuarios Conectados
+                    </div>
+                    <div class="p-3 text-center">
+                        <div class="online-count">127</div>
+                        <p class="text-muted mb-0">miembros activos</p>
+                        <hr style="border-color: var(--medium-gray);">
+                        <small class="text-muted">
+                            Visitantes: 45 | Miembros: 82
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Forum Stats -->
+                <div class="sidebar-card">
+                    <div class="section-header">
+                        <i class="fas fa-chart-bar me-2"></i>Estadísticas
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Total de temas:</span>
+                            <strong style="color: var(--gold);">1,234</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Total de mensajes:</span>
+                            <strong style="color: var(--gold);">8,756</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Miembros registrados:</span>
+                            <strong style="color: var(--gold);">2,891</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Nuevo miembro:</span>
+                            <strong style="color: var(--gold);">Afrodita_85</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="sidebar-card">
+                    <div class="section-header">
+                        <i class="fas fa-link me-2"></i>Enlaces Rápidos
+                    </div>
+                    <div class="p-3">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-light btn-sm text-start">
+                                <i class="fas fa-book me-2"></i>Biblioteca Mitológica
+                            </button>
+                            <button class="btn btn-outline-light btn-sm text-start">
+                                <i class="fas fa-tree me-2"></i>Árbol Genealógico
+                            </button>
+                            <button class="btn btn-outline-light btn-sm text-start">
+                                <i class="fas fa-map me-2"></i>Mapa del Mundo Griego
+                            </button>
+                            <button class="btn btn-outline-light btn-sm text-start">
+                                <i class="fas fa-graduation-cap me-2"></i>Guías de Estudio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Forum Sections -->
+    <div class="modal fade" id="forumModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Título de la Sección</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 style="color: var(--gold);">Mitología Griega - Foro</h5>
+                    <p>Un espacio dedicado al estudio y discusión de los mitos, leyendas y tradiciones de la antigua Grecia.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 Foro de Mitología Griega. Todos los derechos reservados.</p>
+                    <div>
+                        <a href="#" class="text-muted me-3">Términos de uso</a>
+                        <a href="#" class="text-muted me-3">Privacidad</a>
+                        <a href="#" class="text-muted">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openModal(section) {
+            const modal = new bootstrap.Modal(document.getElementById('forumModal'));
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            const sections = {
+                dioses: {
+                    title: 'Dioses del Olimpo',
+                    threads: [
+                        'Zeus: El Rey de los Dioses - Sus poderes y responsabilidades',
+                        'Hera: La Reina celosa - Mitos sobre su venganza',
+                        'Poseidón vs Zeus: ¿Quién es más poderoso?',
+                        'Atenea: Sabiduría y guerra - La diosa más respetada',
+                        'Afrodita: El amor y la belleza en la mitología',
+                        'Apolo: Música, poesía y profecías',
+                        'Artemisa: La cazadora lunar',
+                        'Hefesto: El herrero divino'
+                    ]
+                },
+                heroes: {
+                    title: 'Héroes y Semidioses',
+                    threads: [
+                        'Los 12 trabajos de Hércules explicados',
+                        'Perseo y Medusa: Análisis del mito',
+                        'Teseo y el Minotauro: Simbolismo del laberinto',
+                        'Aquiles: El guerrero invencible con un punto débil',
+                        'Jasón y los Argonautas: La búsqueda del Vellocino',
+                        'Odiseo: El héroe más astuto de todos',
+                        'Belerofontes y Pegaso: El domador del caballo alado'
+                    ]
+                },
+                monstruos: {
+                    title: 'Monstruos y Criaturas',
+                    threads: [
+                        'Medusa: ¿Víctima o villana?',
+                        'El Minotauro: Origen y significado',
+                        'Cerbero: El guardián del Hades',
+                        'Las Sirenas: Seductoras mortales del mar',
+                        'Hidra de Lerna: El monstruo de múltiples cabezas',
+                        'Quimera: La bestia de tres formas',
+                        'Cíclopes: Los herreros de un solo ojo'
+                    ]
+                },
+                lugares: {
+                    title: 'Lugares Míticos',
+                    threads: [
+                        'El Monte Olimpo: Hogar de los dioses',
+                        'El Hades: El reino de los muertos',
+                        'Atlántida: ¿Mito o realidad histórica?',
+                        'Delfos: El oráculo más importante',
+                        'Troya: La ciudad de la guerra legendaria',
+                        'El Laberinto de Creta: Arquitectura mítica',
+                        'Los Campos Elíseos: El paraíso griego'
+                    ]
+                }
+            };
+            
+            modalTitle.textContent = sections[section].title;
+            
+            let threadsHtml = '<div class="thread-list">';
+            sections[section].threads.forEach(thread => {
+                threadsHtml += `
+                    <div class="thread-item">
+                        <i class="fas fa-comment-dots me-2" style="color: var(--gold);"></i>
+                        ${thread}
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-user me-1"></i>Por Usuario123 - 
+                                <i class="fas fa-clock me-1"></i>Hace ${Math.floor(Math.random() * 24)} horas - 
+                                <i class="fas fa-reply me-1"></i>${Math.floor(Math.random() * 50)} respuestas
+                            </small>
+                        </div>
+                    </div>
+                `;
+            });
+            threadsHtml += '</div>';
+            
+            modalBody.innerHTML = threadsHtml;
+            modal.show();
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate forum cards on hover
+            const forumCards = document.querySelectorAll('.forum-card');
+            forumCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = 'var(--gold)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'var(--medium-gray)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
