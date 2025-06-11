@@ -328,6 +328,7 @@
             from {
                 text-shadow: 0 0 30px rgba(167, 128, 22, 0.5);
             }
+
             to {
                 text-shadow: 0 0 50px rgba(167, 128, 22, 0.8), 0 0 80px rgba(167, 128, 22, 0.3);
             }
@@ -338,12 +339,15 @@
                 transform: translateY(100vh) translateX(0px) rotate(0deg);
                 opacity: 0;
             }
+
             10% {
                 opacity: 0.6;
             }
+
             90% {
                 opacity: 0.6;
             }
+
             100% {
                 transform: translateY(-20px) translateX(100px) rotate(360deg);
                 opacity: 0;
@@ -362,21 +366,26 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
+
             .hero p {
                 font-size: 1.1rem;
             }
+
             .game-layout {
                 grid-template-columns: 1fr;
             }
+
             .crossword-grid {
                 grid-template-columns: repeat(15, 25px);
                 grid-template-rows: repeat(15, 25px);
             }
+
             .crossword-cell {
                 width: 25px;
                 height: 25px;
                 font-size: 12px;
             }
+
             .nav-links {
                 display: none;
             }
@@ -410,7 +419,8 @@
 
     <section class="hero">
         <h1 style="color: #ffffff;">CRUCIGRAMA MÍTICO</h1>
-        <p>Descifra los enigmas de las leyendas perdidas, donde criaturas fantásticas y héroes olvidados esperan ser recordados en este desafío de sabiduría ancestral.</p>
+        <p>Descifra los enigmas de las leyendas perdidas, donde criaturas fantásticas y héroes olvidados esperan ser
+            recordados en este desafío de sabiduría ancestral.</p>
         <div style="font-size: 2rem; animation: float 3s ease-in-out infinite;">🧩📜🔍</div>
     </section>
 
@@ -422,7 +432,8 @@
                     <h3>Resuelve el crucigrama de criaturas y leyendas míticas</h3>
                     <div class="game-controls">
                         <div class="game-stats">
-                            <div>Palabras completadas: <span id="wordsCompleted" style="color: #a78016; font-weight: bold;">0/12</span></div>
+                            <div>Palabras completadas: <span id="wordsCompleted"
+                                    style="color: #a78016; font-weight: bold;">0/12</span></div>
                             <div>Tiempo: <span id="timer" style="color: #ffffff; font-weight: bold;">00:00</span></div>
                         </div>
                         <div>
@@ -435,13 +446,13 @@
 
                 <div class="game-layout">
                     <div class="crossword-grid" id="crosswordGrid"></div>
-                    
+
                     <div class="clues-container">
                         <div class="clues-section">
                             <div class="clues-title">🔽 HORIZONTALES</div>
                             <div id="horizontalClues"></div>
                         </div>
-                        
+
                         <div class="clues-section">
                             <div class="clues-title">🔽 VERTICALES</div>
                             <div id="verticalClues"></div>
@@ -482,7 +493,7 @@
                 this.startTime = null;
                 this.timerInterval = null;
                 this.completedWords = 0;
-                
+
                 // Definir las palabras y sus posiciones
                 this.words = [
                     // Horizontales
@@ -492,7 +503,7 @@
                     { word: 'MEDUSA', row: 8, col: 7, direction: 'horizontal', number: 4, clue: 'Gorgona que convertía en piedra con la mirada' },
                     { word: 'CENTAURO', row: 10, col: 2, direction: 'horizontal', number: 5, clue: 'Ser mitad hombre, mitad caballo' },
                     { word: 'SIRENA', row: 12, col: 6, direction: 'horizontal', number: 6, clue: 'Criatura marina que hechizaba con su canto' },
-                    
+
                     // Verticales
                     { word: 'DRAGON', row: 1, col: 1, direction: 'vertical', number: 7, clue: 'Bestia escupefuegos guardiana de tesoros' },
                     { word: 'HIDRA', row: 3, col: 8, direction: 'vertical', number: 8, clue: 'Serpiente de múltiples cabezas' },
@@ -516,7 +527,7 @@
             placeWords() {
                 // Limpiar grid
                 this.grid = Array(this.gridSize).fill().map(() => Array(this.gridSize).fill(null));
-                
+
                 // Colocar cada palabra
                 this.words.forEach(wordData => {
                     this.placeWord(wordData);
@@ -525,11 +536,11 @@
 
             placeWord(wordData) {
                 const { word, row, col, direction } = wordData;
-                
+
                 for (let i = 0; i < word.length; i++) {
                     const currentRow = direction === 'horizontal' ? row : row + i;
                     const currentCol = direction === 'horizontal' ? col + i : col;
-                    
+
                     if (currentRow < this.gridSize && currentCol < this.gridSize) {
                         if (!this.grid[currentRow][currentCol]) {
                             this.grid[currentRow][currentCol] = {
@@ -558,7 +569,7 @@
 
                         if (this.grid[row][col]) {
                             const cellData = this.grid[row][col];
-                            
+
                             if (cellData.number) {
                                 const numberSpan = document.createElement('span');
                                 numberSpan.className = 'cell-number';
@@ -586,7 +597,7 @@
             renderClues() {
                 const horizontalClues = document.getElementById('horizontalClues');
                 const verticalClues = document.getElementById('verticalClues');
-                
+
                 horizontalClues.innerHTML = '';
                 verticalClues.innerHTML = '';
 
@@ -617,8 +628,8 @@
 
             onCellKeydown(event, row, col) {
                 const input = event.target;
-                
-                switch(event.key) {
+
+                switch (event.key) {
                     case 'ArrowLeft':
                         this.moveToCell(row, col - 1);
                         break;
@@ -653,13 +664,13 @@
 
             highlightWord(wordData) {
                 this.clearHighlights();
-                
+
                 const { word, row, col, direction } = wordData;
-                
+
                 for (let i = 0; i < word.length; i++) {
                     const currentRow = direction === 'horizontal' ? row : row + i;
                     const currentCol = direction === 'horizontal' ? col + i : col;
-                    
+
                     const cell = document.querySelector(`div[data-row="${currentRow}"][data-col="${currentCol}"]`);
                     if (cell) {
                         cell.classList.add('active');
@@ -675,7 +686,7 @@
 
             checkWordCompletion() {
                 let completed = 0;
-                
+
                 this.words.forEach((wordData, index) => {
                     if (this.isWordComplete(wordData)) {
                         completed++;
@@ -686,10 +697,10 @@
                         }
                     }
                 });
-                
+
                 this.completedWords = completed;
                 this.updateStats();
-                
+
                 if (completed === this.words.length) {
                     clearInterval(this.timerInterval);
                     setTimeout(() => {
@@ -700,11 +711,11 @@
 
             isWordComplete(wordData) {
                 const { word, row, col, direction } = wordData;
-                
+
                 for (let i = 0; i < word.length; i++) {
                     const currentRow = direction === 'horizontal' ? row : row + i;
                     const currentCol = direction === 'horizontal' ? col + i : col;
-                    
+
                     const input = document.querySelector(`div[data-row="${currentRow}"][data-col="${currentCol}"] input`);
                     if (!input || input.value !== word[i]) {
                         return false;
@@ -716,7 +727,7 @@
             checkAnswers() {
                 let correct = 0;
                 let total = 0;
-                
+
                 document.querySelectorAll('.crossword-cell input').forEach(input => {
                     total++;
                     if (input.value === input.dataset.answer) {
@@ -726,9 +737,9 @@
                         input.style.background = 'rgba(255, 0, 0, 0.3)';
                     }
                 });
-                
+
                 alert(`Respuestas correctas: ${correct}/${total}`);
-                
+
                 // Limpiar colores después de 2 segundos
                 setTimeout(() => {
                     document.querySelectorAll('.crossword-cell input').forEach(input => {
@@ -743,11 +754,11 @@
                     if (!this.isWordComplete(wordData)) {
                         // Mostrar la primera letra vacía
                         const { word, row, col, direction } = wordData;
-                        
+
                         for (let i = 0; i < word.length; i++) {
                             const currentRow = direction === 'horizontal' ? row : row + i;
                             const currentCol = direction === 'horizontal' ? col + i : col;
-                            
+
                             const input = document.querySelector(`div[data-row="${currentRow}"][data-col="${currentCol}"] input`);
                             if (input && input.value === '') {
                                 input.value = word[i];
@@ -760,7 +771,7 @@
                         }
                     }
                 }
-                
+
                 alert('¡Ya has completado todo o no necesitas más pistas!');
             }
 
